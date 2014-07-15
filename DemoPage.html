@@ -4,27 +4,7 @@
     <meta charset="UTF-8">
     <title>jQuery Tasks</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script async="async">
-        $(function() {
-            $("#target").click(function() {
-                var array = ['This', 'Is', 'Plugin'];
-
-                if ($("#panel").css('display') == 'none') {
-                    for (var i = 0; i < array.length; i++) {
-                        $("#panel").append("<div class='dropdown-value'><a>" + array[i] + "</a></div>")
-                    }
-                } else {
-                    $("#panel div").remove();
-                }
-
-                $("#panel").slideToggle("fast");
-                $('#panel').css("width",$("#target").width() + "px")
-
-                return false;
-            });
-        });
-
-    </script>
+    <script src="PluginOnInput.js" async="async"></script>
 
     <style>
     #panel {
@@ -32,16 +12,9 @@
     padding: 0;
     width:300px;
     height: auto;
-    background: #09F;
-    color: #FFF;
-    }
-
-    #test {
-        padding: 0;
-        width:300px;
-        height: 200px;
-        background: #09F;
-        color: #FFF;
+    background: #FFF;
+    border:solid;
+    border-color:black;
     }
 
     p {
@@ -54,13 +27,6 @@
         padding: 0;
     }
 
-    .active {
-        background: #FF9;
-    }
-
-    .hover {
-        background: #FF9;
-    }
     </style>
 </head>
 <body>
