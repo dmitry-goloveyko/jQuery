@@ -1,26 +1,27 @@
-$(function () {
-    $("#target").click(function () {
-        var array = ['This', 'Is', 'Plugin'];
+(function ($) {
+    $.fn.dropdown = function (options) {
+        options = $.extend({
+            sourceArray : ['This', 'Is', 'Plugin']
+        }, options);
 
-        if ($("#panel").css('display') == 'none') {
-            for (var i = 0; i < array.length; i++) {
-                $("#panel").append("<div class='dropdown-value'><a>" + array[i] + "</a></div>")
-            }
-        } else {
-            $("#panel div").remove();
-        }
+        var element = $(this);
 
-        $("#panel").slideToggle("fast");
-        $('#panel').css("width", $("#target").width() + "px")
+        var showDropdownList = function() {
+            $(this).focusin(function () {
+                var DropdownListHTML = '';
+                for(var i = 0; i < options.sourceArray.length; i++) {
+                    DropdownListHTML += '<div class="dropdown-item">' + options.sourceArray[i] + '<div>';
+                }
 
-        return false;
-    });
-});
+                $('#target1').after('<div class="dropdown" style="width:' + $('#target1').width() + '">' + DropdownListHTML + '</div>');
+            })
+                .focusout(function () {
+                    $('.dropdown').remove();
+                });
+        };
 
-$(document).click(function (e) {
-    var container = $("#panel div");
+        return this.each(showDropdownList());
+    };
+})(jQuery);
 
-    if (!container.is(e.target)) {
-        container.remove();
-    }
-});
+$('#target1').dropdown();
